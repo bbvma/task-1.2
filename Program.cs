@@ -4,20 +4,20 @@ class Program
 {
     static void Main()
     {
-        Console.Write("Введите размер массива N: ");
-        int size = int.Parse(Console.ReadLine());
+        Console.Write("Введите размер массива: ");
+        Int32.TryParse(Console.ReadLine(), out int size);
 
         // создаем и заполняем массив
         double[] arr = new double[size];
         Random rand = new Random();
-        for (var i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
             arr[i] = rand.Next(-50, 50);
         }
 
         // выводим массив
         Console.WriteLine("Изначальный массив:");
-        foreach (var element in arr)
+        foreach (double element in arr)
         {
             Console.Write(element + " ");
         }
@@ -44,10 +44,10 @@ class Program
 
         // вводим интервал [а, b] для удаления элементов
         Console.WriteLine("Введите значение а: ");
-        double a = double.Parse(Console.ReadLine());
+        Int32.TryParse(Console.ReadLine(), out int a);
 
         Console.WriteLine("Введите значение b: ");
-        double b = double.Parse(Console.ReadLine());
+        Int32.TryParse(Console.ReadLine(), out int b);
 
         // удаляем элементы, модуль которых находится в интервале [а,b]
         int newSize = 0; // размер массива после сжатия
@@ -68,7 +68,7 @@ class Program
 
         // выводим полученный массив
         Console.WriteLine("Измененный массив после удаления элементов:");
-        foreach (var element in arr)
+        foreach (double element in arr)
         {
             Console.Write(element + " ");
         }
@@ -77,7 +77,7 @@ class Program
 
 
         Console.Write("Введите размерность матрицы: ");
-        int N = int.Parse(Console.ReadLine());
+        Int32.TryParse(Console.ReadLine(), out int N);
 
         // создаем и заполняем матрицу
         int[,] matrix = new int[N, N];
@@ -116,11 +116,11 @@ class Program
             }
         }
 
-        Console.WriteLine("Сумма элементов в столбцах без отрицательных элементов: " + sum);
+        Console.WriteLine("Сумма элементов в столбцах без отрицательных элементов: " + summa);
 
         // 2) минимум среди сумм модулей элементов диагоналей, параллельных побочной диагонали
         int minSum = int.MaxValue;
-        var sum_arr = new int[2*N - 1];
+        int[] sum_arr = new int[2*N - 1];
         for (int i = 0; i < N; ++i)
         { 
             for (int j = 0; j < N; ++j)
