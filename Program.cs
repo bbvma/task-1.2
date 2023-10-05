@@ -5,12 +5,12 @@ class Program
     static void Main()
     {
         Console.Write("Введите размер массива N: ");
-        int N = int.Parse(Console.ReadLine());
+        int size = int.Parse(Console.ReadLine());
 
         // создаем и заполняем массив
-        double[] arr = new double[N];
+        double[] arr = new double[size];
         Random rand = new Random();
-        for (var i = 0; i < N; i++)
+        for (var i = 0; i < size; i++)
         {
             arr[i] = rand.Next(-50, 50);
         }
@@ -26,14 +26,14 @@ class Program
 
         // 1) находим максимальный элемент массива
         double max = arr[0];
-        for (int i = 1; i < N; i++)
+        for (int i = 1; i < size; i++)
             if (arr[i] > max)
                 max = arr[i];
         Console.WriteLine("Максимальный элемент: " + max);
 
         // 2) вычисляем сумму элементов до последнего положительного элемента
         double sum = 0;
-        for (int i = N - 1; i >= 0; i--)
+        for (int i = size - 1; i >= 0; i--)
         {
             if (arr[i] > 0)
                 for (int j = 0; j < i; j++)
@@ -51,7 +51,7 @@ class Program
 
         // удаляем элементы, модуль которых находится в интервале [а,b]
         int newSize = 0; // размер массива после сжатия
-        for (int i = 0; i < N; i++)
+        for (int i = 0; i < size; i++)
         {
             if (Math.Abs(arr[i]) < a || Math.Abs(arr[i]) > b)
             {
@@ -61,7 +61,7 @@ class Program
         }
 
         // заполняем оставшиеся элементы нулями
-        for (int i = newSize; i < N; i++)
+        for (int i = newSize; i < size; i++)
         {
             arr[i] = 0;
         }
@@ -75,7 +75,8 @@ class Program
 
         Console.ReadLine();
 
-    Console.Write("Введите размерность матрицы: ");
+
+        Console.Write("Введите размерность матрицы: ");
         int N = int.Parse(Console.ReadLine());
 
         // создаем и заполняем матрицу
@@ -94,7 +95,7 @@ class Program
         }
 
         // 1) сумма элементов в столбцах, не содержащих отрицательных элементов
-        int sum = 0;
+        int summa = 0;
         for (int j = 0; j < N; j++)
         {
             bool containsNegative = false;
@@ -110,7 +111,7 @@ class Program
             {
                 for (int i = 0; i < N; i++)
                 {
-                    sum += matrix[i, j];
+                    summa += matrix[i, j];
                 }
             }
         }
