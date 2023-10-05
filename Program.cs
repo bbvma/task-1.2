@@ -4,7 +4,78 @@ class Program
 {
     static void Main()
     {
-        Console.Write("Введите размерность матрицы: ");
+        Console.Write("Введите размер массива N: ");
+        int N = int.Parse(Console.ReadLine());
+
+        // создаем и заполняем массив
+        double[] arr = new double[N];
+        Random rand = new Random();
+        for (var i = 0; i < N; i++)
+        {
+            arr[i] = rand.Next(-50, 50);
+        }
+
+        // выводим массив
+        Console.WriteLine("Изначальный массив:");
+        foreach (var element in arr)
+        {
+            Console.Write(element + " ");
+        }
+
+        Console.ReadLine();
+
+        // 1) находим максимальный элемент массива
+        double max = arr[0];
+        for (int i = 1; i < N; i++)
+            if (arr[i] > max)
+                max = arr[i];
+        Console.WriteLine("Максимальный элемент: " + max);
+
+        // 2) вычисляем сумму элементов до последнего положительного элемента
+        double sum = 0;
+        for (int i = N - 1; i >= 0; i--)
+        {
+            if (arr[i] > 0)
+                for (int j = 0; j < i; j++)
+                    sum += arr[j];
+            break;
+        }
+        Console.WriteLine("Сумма элементов до последнего положительного элемента: " + sum);
+
+        // вводим интервал [а, b] для удаления элементов
+        Console.WriteLine("Введите значение а: ");
+        double a = double.Parse(Console.ReadLine());
+
+        Console.WriteLine("Введите значение b: ");
+        double b = double.Parse(Console.ReadLine());
+
+        // удаляем элементы, модуль которых находится в интервале [а,b]
+        int newSize = 0; // размер массива после сжатия
+        for (int i = 0; i < N; i++)
+        {
+            if (Math.Abs(arr[i]) < a || Math.Abs(arr[i]) > b)
+            {
+                arr[newSize] = arr[i];
+                newSize++;
+            }
+        }
+
+        // заполняем оставшиеся элементы нулями
+        for (int i = newSize; i < N; i++)
+        {
+            arr[i] = 0;
+        }
+
+        // выводим полученный массив
+        Console.WriteLine("Измененный массив после удаления элементов:");
+        foreach (var element in arr)
+        {
+            Console.Write(element + " ");
+        }
+
+        Console.ReadLine();
+
+    Console.Write("Введите размерность матрицы: ");
         int N = int.Parse(Console.ReadLine());
 
         // создаем и заполняем матрицу
